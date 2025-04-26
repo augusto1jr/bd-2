@@ -6,8 +6,9 @@ import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
-
 import database.ConexaoBD;
+import view.TelaInicial;
+
 
 public class TelaPerfil extends JPanel {
 
@@ -58,6 +59,33 @@ public class TelaPerfil extends JPanel {
         JScrollPane scrollPane = new JScrollPane(pedidosTable);
         scrollPane.setBorder(BorderFactory.createTitledBorder("Pedidos"));
         add(scrollPane, BorderLayout.CENTER);
+        
+        // Adicionando painel com botão de novo pedido
+        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JButton novoPedidoButton = new JButton("Novo Pedido");
+        novoPedidoButton.setBackground(new Color(255, 255, 255));
+        novoPedidoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame pedidoFrame = new JFrame("Cadastro de Pedido");
+				pedidoFrame.setSize(400, 300);
+				pedidoFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				pedidoFrame.setContentPane(new TelaPedido(id_cliente, pedidoFrame));
+				pedidoFrame.setVisible(true);
+			}
+		});
+        bottomPanel.add(novoPedidoButton);
+        add(bottomPanel, BorderLayout.SOUTH);
+        
+        JButton voltarButton = new JButton("Voltar");
+        voltarButton.setBackground(new Color(255, 255, 255));
+        voltarButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				parentFrame.setContentPane(new TelaBuscar(parentFrame));
+				parentFrame.revalidate();
+				parentFrame.repaint();
+			}
+        });
+        bottomPanel.add(voltarButton);
     }
 
     private void carregarPedidos() {

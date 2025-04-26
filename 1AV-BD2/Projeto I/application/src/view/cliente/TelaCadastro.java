@@ -35,17 +35,17 @@ public class TelaCadastro extends JPanel {
 		cadastrarButton.setBounds(120, 174, 98, 23);
 		add(cadastrarButton);
 		
-		JButton cancelarButton = new JButton("Cancelar");
-		cancelarButton.setBackground(new Color(255, 255, 255));
-		cancelarButton.addActionListener(new ActionListener() {
+		JButton voltarButton = new JButton("Voltar");
+		voltarButton.setBackground(new Color(255, 255, 255));
+		voltarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				parentFrame.setContentPane(new TelaInicial(parentFrame));
 				parentFrame.revalidate();
 				parentFrame.repaint();
 			}
 		});
-		cancelarButton.setBounds(225, 174, 89, 23);
-		add(cancelarButton);
+		voltarButton.setBounds(225, 174, 89, 23);
+		add(voltarButton);
 
 		JLabel nomeLabel = new JLabel("Nome:");
 		nomeLabel.setBounds(149, 71, 39, 14);

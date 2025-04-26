@@ -40,7 +40,7 @@ public class TelaBuscar extends JPanel {
 		buscarButton.setBackground(new Color(255, 255, 255));
 		buscarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				buscarCliente();
+				buscarCliente(parentFrame);
 			}
 		});
 		buscarButton.setBounds(174, 147, 89, 23);
@@ -60,7 +60,7 @@ public class TelaBuscar extends JPanel {
 
 	}
 	
-	private void buscarCliente() {
+	private void buscarCliente(JFrame parentFrame) {
 	    String email = emailField.getText().trim();
 
 	    if (email == null || email.trim().isEmpty()) {
@@ -79,13 +79,10 @@ public class TelaBuscar extends JPanel {
 	            String nome = rs.getString("nome");
 	            String fone = rs.getString("fone");
 	            String senha = rs.getString("senha");
-
-
-	            JFrame perfilFrame = new JFrame("Perfil do Cliente");
-	            perfilFrame.setSize(400, 300);
-	            perfilFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	            perfilFrame.setContentPane(new view.cliente.TelaPerfil(id_cliente, nome, fone, email, senha, perfilFrame)); // ou passe só o id se preferir carregar lá
-	            perfilFrame.setVisible(true);
+	            
+				parentFrame.setContentPane(new TelaPerfil(id_cliente, nome, fone, email, senha, parentFrame));
+				parentFrame.revalidate();
+				parentFrame.repaint();
 
 	        } else {
 	            JOptionPane.showMessageDialog(this, "Cliente não encontrado.",
