@@ -1,10 +1,6 @@
 package view;
 
 import javax.swing.JPanel;
-
-import view.cliente.TelaBuscar;
-import view.cliente.TelaCadastro;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -28,7 +24,7 @@ public class TelaInicial extends JPanel {
 				parentFrame.repaint();
 			}
 		});
-		cadastrarButton.setBounds(150, 95, 135, 23);
+		cadastrarButton.setBounds(282, 149, 135, 23);
 		add(cadastrarButton);
 		
 		JButton buscarButton = new JButton("Buscar Cliente");
@@ -40,12 +36,19 @@ public class TelaInicial extends JPanel {
 				parentFrame.repaint();
 			}
 		});
-		buscarButton.setBounds(150, 129, 135, 23);
+		buscarButton.setBounds(282, 183, 135, 23);
 		add(buscarButton);
 		
 		JButton listarButton = new JButton("Listar Clientes");
+		listarButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				parentFrame.setContentPane(new TelaListar(parentFrame));
+				parentFrame.revalidate();
+				parentFrame.repaint();
+			}
+		});
 		listarButton.setBackground(new Color(255, 255, 255));
-		listarButton.setBounds(150, 163, 135, 23);
+		listarButton.setBounds(282, 217, 135, 23);
 		add(listarButton);
 
 	}
